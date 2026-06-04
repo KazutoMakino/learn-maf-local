@@ -1,3 +1,11 @@
+02-agents/
+03-workflows/
+04-hosting/
+05-end-to-end/
+
+.org/
+.ruff_cache/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
