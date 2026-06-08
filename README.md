@@ -5,7 +5,7 @@ Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず
 公式のサンプル構成をベースに、クラウド（OpenAI等）依存の部分をすべてローカルLLM（Ollama）仕様に書き換えて検証しています。
 
 🔗 **連載解説記事（Qiita）:**
-- [【脱・従量課金】CPUローカルLLM×Microsoft Agent Frameworkで始める次世代マルチエージェント開発 (導入／01-get-started編)]()
+- [【脱・従量課金】CPUローカルLLM×Microsoft Agent Frameworkで始める次世代マルチエージェント開発 (Vol.1 導入／01-get-started編)](https://qiita.com/KazutoMakino/items/b7664ec375d6c9014350)
 
 ---
 
