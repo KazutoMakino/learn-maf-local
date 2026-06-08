@@ -16,7 +16,7 @@ There are XML tags in all of the get started samples, those are used to display 
 
 
 async def main() -> None:
-    client = OllamaChatClient(host="http://localhost:11434", model="gemma4:e2b")
+    client = OllamaChatClient(host="http://localhost:11434", model="gemma4:12b")
 
     agent = Agent(
         client=client, name="HelloAgent", instructions="You are a friendly assistant. Keep your answers brief."

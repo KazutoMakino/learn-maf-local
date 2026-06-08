@@ -1,87 +1,70 @@
-# template_repository_python
+# learn-maf-local
 
-## 概要
+Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず、**完全ローカル環境（CPU推論）** で動かしながら学ぶためのハンズオンリポジトリです。
 
-Pythonプロジェクトの開始に必要な基本的な設定と構成を提供するテンプレートリポジトリです。  
-`uv`を用いた依存関係の管理、`pre-commit`を用いたコードのリンティング (`mypy`) およびフォーマット (`ruff`) の設定ファイルが含み、すぐに環境構築することが可能にします。
+公式のサンプル構成をベースに、クラウド（OpenAI等）依存の部分をすべてローカルLLM（Ollama）仕様に書き換えて検証しています。
 
-## 主な機能
+🔗 **連載解説記事（Qiita）:**
+- [【脱・従量課金】CPUローカルLLM×Microsoft Agent Frameworkで始める次世代マルチエージェント開発 (導入／01-get-started編)]()
 
-* **依存関係管理:** `uv` が構成されており、依存関係の管理が容易です。
-* **pre-commit:** `pre-commit` が構成されており、コミット時に以下レンティングとフォーマットを実行し、コード品質を維持できます。
-* **リンティングとフォーマット:** `mypy`, `ruff` がプリセットされており、コード品質を維持できます。
+---
 
-## 使い方
+## 🚀 特徴
+- **脱・従量課金 / 完全無料**: クラウドAPIを一切叩かず、PC内のローカルLLMのみで動作します。
+- **圧倒的にセキュア**: 物理隔離されたローカル環境で完結するため、機密データの漏洩リスクがありません。
+- **軽量・CPU動作**: 高価な外部GPU（dGPU）がなくても、潤沢なメインメモリ（推奨32GB）があれば一般的なノートPCで十分に実用動作します。
 
-### テンプレートからリポジトリを作成する
+---
 
-1. このリポジトリをforkします。
-2.  新しいリポジトリを作成します。
-3.  "Repository template" でドロップダウンから上記リポジトリを選択します。
+## 🛠️ 動作確認環境
+- **OS**: Arch Linux (Windows / Mac / WSL2 等でも動作可能)
+- **パッケージマネージャ**: `uv`
+- **ローカルLLMサーバー**: `Ollama`
+- **使用モデル**: `gemma4:12b` (お好みのモデルに差し替え可能)
 
-### ローカル環境のセットアップ
+---
 
-上記作成したリポジトリをローカルにクローンします。
+## 📦 クイックスタート
+
+### 1. Ollamaの準備
+事前にOllamaがインストールされ、バックグラウンドで起動していることを確認してください。
+その後、検証に使用するモデルをpullします。
 
 ```bash
-git clone https://github.com/your-username/your-new-repository.git
-cd your-new-repository
+ollama pull gemma4:12b
 ```
 
-### 依存関係のインストール
-
-プロジェクトの依存関係をインストールします。  
-`uv`を使用する場合は、次のコマンドを実行します。
+Ollamaが正常に常駐しているか（ http://localhost:11434 が応答するか）確認しておきます。
 
 ```bash
+curl http://localhost:11434
+# "Ollama is running" と返ってくればOK
+```
+
+### 2. リポジトリのクローンと環境構築
+本リポジトリではPythonのパッケージ管理に uv を使用しています。手動での仮想環境の作成やアクティベートは不要です。
+
+```bash
+# クローン
+git clone [https://github.com/KazutoMakino/learn-maf-local.git](https://github.com/KazutoMakino/learn-maf-local.git)
+cd learn-maf-local
+
+# 依存関係の同期（.venvの自動作成）
 uv sync
 ```
 
-※ パッケージ管理の`uv`がない場合は次のコマンドでインストールしてから上記実行してください。
-
+### 3. サンプルの実行
 ```bash
-pip install uv
+# リポジトリ直下に居るとして、01-get-started/01_hello_agent.py を実行する例
+uv run python 01-get-started/01_hello_agent.py
+
+# 仮想環境に入って実行する場合は以下
+source .venv/bin/activate
+python 01-get-started/01_hello_agent.py
 ```
 
-依存関係の追加／削除／更新するには次のコマンドで実行します。  
-(初期状態では主に`jupyterlab`,`pre-commit`,`ruff`,`uv`のパッケージが依存関係として入っており、`pyproject.toml`に記載されています。詳細な依存関係については`uv.lock`に記載されています)
+---
 
-```bash
-uv add {package_name}
-uv remove {package_name}
-uv sync
-```
+## 📝 ライセンス
 
-### uvで構築した環境の入り方
-
-`uv`で構築した`.venv/`の環境に入るには以下コマンドで実行します。  
-(以下例はwindowsの場合。windows以外では `.venv/Scripts` を `.venv/bin` と置き換えてください)
-
-```bash
-# bash系の場合
-source .venv\Scripts\activate
-
-# コマンドプロンプトの場合
-.venv\Scripts\activate.bat
-
-# PowerShellの場合
-.venv\Scripts\activate.ps1
-```
-
-### pre-commitの適用
-
-`pre-commit`は次のコマンドで有効化します。  
-(設定は `.pre-commit-config.yaml` に記載しています)
-
-```bash
-pre-commit install
-pre-commit autoupdate
-```
-
-### リンティングとフォーマット
-
-`pre-commit`を設定することによりコミット時にコードのリンティングとフォーマットが自動で行われるのですが、コマンドラインからマニュアル実行した場合は以下のコマンドを実行します。
-
-```bash
-pre-commit run --all-files
-```
+[MIT License](./LICENSE)
