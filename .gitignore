@@ -1,10 +1,11 @@
-02-agents/
 03-workflows/
 04-hosting/
 05-end-to-end/
 
 .org/
 .ruff_cache/
+docs/
+CLAUDE.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

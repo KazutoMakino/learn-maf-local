@@ -20,7 +20,7 @@ Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず
 - **OS**: Arch Linux (Windows / Mac / WSL2 等でも動作可能)
 - **パッケージマネージャ**: `uv`
 - **ローカルLLMサーバー**: `Ollama`
-- **使用モデル**: `gemma4:12b` (お好みのモデルに差し替え可能)
+- **使用モデル**: `gemma4:12b-it-qat` (お好みのモデルに差し替え可能)
 
 ---
 
@@ -31,7 +31,7 @@ Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず
 その後、検証に使用するモデルをpullします。
 
 ```bash
-ollama pull gemma4:12b
+ollama pull gemma4:12b-it-qat
 ```
 
 Ollamaが正常に常駐しているか（ http://localhost:11434 が応答するか）確認しておきます。
