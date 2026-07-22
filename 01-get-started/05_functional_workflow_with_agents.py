@@ -16,7 +16,7 @@ from agent_framework.ollama import OllamaChatClient
 # OllamaChatClient を初期化
 client = OllamaChatClient(
     host="http://localhost:11434",
-    model="gemma4:12b",
+    model="gemma4:12b-it-qat",
     additional_properties=120.0,
 )
 

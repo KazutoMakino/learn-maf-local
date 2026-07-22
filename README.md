@@ -6,6 +6,7 @@ Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず
 
 🔗 **連載解説記事（Qiita）:**
 - [【脱・従量課金】CPUローカルLLM×Microsoft Agent Frameworkで始める次世代マルチエージェント開発 (Vol.1 導入／01-get-started編)](https://qiita.com/KazutoMakino/items/b7664ec375d6c9014350)
+- [【脱・従量課金】Microsoft Agent Framework を Ollama でローカル運用する Vol.2 〜02-agents/ 厳選ハンズオン〜](https://qiita.com/KazutoMakino/items/e092d562686159f18f33)
 
 ---
 
@@ -20,7 +21,7 @@ Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず
 - **OS**: Arch Linux (Windows / Mac / WSL2 等でも動作可能)
 - **パッケージマネージャ**: `uv`
 - **ローカルLLMサーバー**: `Ollama`
-- **使用モデル**: `gemma4:12b` (お好みのモデルに差し替え可能)
+- **使用モデル**: `gemma4:12b-it-qat` (お好みのモデルに差し替え可能)
 
 ---
 
@@ -31,7 +32,7 @@ Microsoft Agent Framework (MAF) を、外部APIへの課金を一切気にせず
 その後、検証に使用するモデルをpullします。
 
 ```bash
-ollama pull gemma4:12b
+ollama pull gemma4:12b-it-qat
 ```
 
 Ollamaが正常に常駐しているか（ http://localhost:11434 が応答するか）確認しておきます。
